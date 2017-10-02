@@ -26,23 +26,27 @@ class Paddle_WC_API {
 		$data['vendor_auth_code']      = $settings->get('paddle_api_key');
         $data['prices']                = array(get_woocommerce_currency().':'.$order_total);   // Why was tax being removed?
 		$data['return_url']            = static::get_return_url($order);
-		$data['title']                 = str_replace('{#order}', $order->id, $settings->get('product_name'));
+		$data['title']                 = str_replace('{#order}', $order->get_id(), $settings->get('product_name'));
 		$data['image_url']             = $settings->get('product_icon');
-		$data['webhook_url']           = static::get_webhook_url($order->id);
+		$data['webhook_url']           = static::get_webhook_url($order->get_id());
 		$data['discountable']          = 0;
 		$data['quantity_variable']     = 0;
-		$data['customer_email']        = $order->billing_email;
-		$data['customer_postcode']     = $customer->postcode;
-		$data['customer_country']      = $customer->country;
+		$data['customer_email']        = $order->get_billing_email();
+		$data['customer_postcode']     = $customer->get_billing_postcode();
+		$data['customer_country']      = $customer->get_billing_country();
 		
 		// Add the product name(s) as custom message
 		if($settings->get('send_names') == 'yes') {
 			$items = $order->get_items();
 			$names = array();
+			$passthrough = array();
 			foreach($items as $item) {
 				$names[] = $item['name'];
+				$passthrough[] = array("products"=>array("id"=>$item['product_id'],"name"=>$item['name'])); //so that you can trace the order history later directly from paddle dashboard
 			}
 			$data['custom_message'] = implode(', ', array_unique($names));
+			$data['title'] = implode(', ', array_unique($names));
+			$data['passthrough'] = base64_encode(json_encode($passthrough));
 		}
 		
 		// Get pay link from Paddle API
@@ -74,11 +78,11 @@ class Paddle_WC_API {
 				// We got a valid response
 				return json_encode(array(
 					'result' => 'success',
-					'order_id' => $order->id,
+					'order_id' => $order->get_id(),
 					'checkout_url' => $api_response->response->url,
-					'email' => $order->billing_email,
-                    'country' => $customer->country,
-                    'postcode' => $customer->postcode,
+					'email' => $order->get_billing_email(),
+                    'country' => $customer->get_billing_country(),
+                    'postcode' => $customer->get_billing_postcode(),
 					'duration_s' => $api_duration
 				));
 			} else {

@@ -55,7 +55,7 @@ class Paddle_WC_Checkout {
 		wp_enqueue_script('paddle-checkout', 'https://cdn.paddle.com/paddle/paddle.js');
 		
 		// Inject our bootstrap JS to intercept the WC button press and invoke standard JS
-		wp_register_script('paddle-bootstrap', plugins_url('../assets/js/paddle-bootstrap.js', __FILE__), array('jquery'));
+		wp_register_script('paddle-bootstrap', plugins_url('../assets/js/paddle-bootstrap.js', __FILE__), array('jquery'),"3.0.1");
 				
 		// Use wp_localize_script to write JS config that can't be embedded in the script
 		$endpoint = is_wc_endpoint_url('order-pay') ? 'paddle_checkout_pay' : 'paddle_checkout';

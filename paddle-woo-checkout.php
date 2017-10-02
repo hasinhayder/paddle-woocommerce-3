@@ -3,7 +3,7 @@
  * Plugin Name: Paddle
  * Plugin URI: http://paddle.com
  * Description: Paddle Payment Gateway for WooCommerce
- * Version: 3.0.0
+ * Version: 3.0.1
  * Author: Paddle.com
  * Author URI: http://paddle.com
  */
