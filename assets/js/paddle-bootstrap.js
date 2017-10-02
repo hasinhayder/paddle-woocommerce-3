@@ -1,7 +1,8 @@
 jQuery(function($) {
     
     Paddle.Setup({
-        vendor: parseInt(paddle_data.vendor)
+        vendor: parseInt(paddle_data.vendor),
+        // debug:true //uncomment for debug mode
     });
     
     // Can submit from either checkout or order review forms
