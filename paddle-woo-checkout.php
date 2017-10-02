@@ -1,11 +1,11 @@
 <?php
 /*
  * Plugin Name: Paddle
- * Plugin URI: http://paddle.com
+ * Plugin URI: https://github.com/hasinhayder/paddle-woocommerce-3
  * Description: Paddle Payment Gateway for WooCommerce
  * Version: 3.0.1
- * Author: Paddle.com
- * Author URI: http://paddle.com
+ * Author: Paddle.com (Improvements by ThemeBucket)
+ * Author URI: https://github.com/hasinhayder
  */
 
 defined('ABSPATH') or die("Plugin must be run as part of wordpress");
