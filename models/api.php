@@ -108,7 +108,7 @@ class Paddle_WC_API {
      */
     private static function get_webhook_url($order_id) {
         // Adding index.php makes it work for customers without permalinks, and doesn't seem to affect ones with
-	    return get_bloginfo('url') . '/index.php/wc-api/paddle_complete?order_id=' . $order_id;
+	    return get_bloginfo('url') . '/wc-api/paddle_complete?order_id=' . $order_id;
 	}
 
     /**
