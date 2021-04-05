@@ -20,7 +20,7 @@ class Paddle_WC_Gateway extends WC_Payment_Gateway {
 		$this->id                 = 'paddle';
 		$this->method_title       = 'Paddle.com Payment Gateway';
 		$this->method_description = 'Allow customers to securely checkout with credit cards or PayPal';
-		$this->title              = 'Paddle Payments';
+		$this->title              = $this->paddle_settings->get('title');
 		$this->description        = $this->paddle_settings->get('description');
 		$this->icon               = apply_filters('wc_paddle_icon', '');
 		$this->supports           = array('products');	// We only support purchases
